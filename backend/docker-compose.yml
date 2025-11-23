@@ -2,14 +2,20 @@ version: "3.9"
 
 services:
   backend:
-    build: .
-    container_name: music-recognition-backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./:/app
-    depends_on:
-      - db
+      build: .
+      container_name: music-recognition-backend
+      command: ["sh", "/app/app/wait-for-db.sh", "db", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+ 
+      environment:
+        POSTGRES_USER: billyBatson
+        POSTGRES_PASSWORD: billyBatson
+        POSTGRES_DB: billyBatson
+      ports:
+        - "8000:8000"
+      volumes:
+        - ./app:/app/app
+      depends_on:
+        - db
 
   db:
     image: postgres:16

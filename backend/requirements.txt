@@ -4,3 +4,7 @@ python-multipart
 sqlalchemy
 psycopg2-binary
 pydantic
+passlib[argon2]
+argon2-cffi
+PyJWT
+email-validator
