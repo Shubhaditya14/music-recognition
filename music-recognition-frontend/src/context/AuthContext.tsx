@@ -71,7 +71,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // RUN ONCE AT STARTUP
   // ---------------------------
   useEffect(() => {
-    refreshUser();
+    void refreshUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
